@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Mango.Web.App/1.0.0": {
+        "runtime": {
+          "Mango.Web.App.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Mango.Web.App/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
