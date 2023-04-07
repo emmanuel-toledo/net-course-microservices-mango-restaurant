@@ -49,7 +49,7 @@ namespace Mango.Web.App.Services
             return await this.SendAsync<T>(new ApiRequest()
             {
                 RequestType = SD.RequestType.GET,
-                URL = SD.ProductAPI + "/api/products" + id,
+                URL = SD.ProductAPI + "/api/products/" + id,
                 AccessToken = string.Empty
             });
         }
