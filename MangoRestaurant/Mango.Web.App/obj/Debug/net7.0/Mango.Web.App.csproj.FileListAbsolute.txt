@@ -29,3 +29,5 @@ C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestau
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\obj\Debug\net7.0\Mango.Web.App.pdb
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\obj\Debug\net7.0\Mango.Web.App.genruntimeconfig.cache
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\obj\Debug\net7.0\ref\Mango.Web.App.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\obj\Debug\net7.0\Mango.Web.App.csproj.CopyComplete

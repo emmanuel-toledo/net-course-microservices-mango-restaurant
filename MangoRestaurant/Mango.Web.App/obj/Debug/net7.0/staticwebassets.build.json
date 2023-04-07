@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GncY67NBdUViBpY6gpugQMJqasXfeOJ4njpGjB5l1SU=",
+  "Hash": "fmSK+PRC4GS6/9kNAoL/yj+e8nOlkgYiqXtoMr2nyqo=",
   "Source": "Mango.Web.App",
   "BasePath": "_content/Mango.Web.App",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\images\\mango.png",
+      "SourceId": "Mango.Web.App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\",
+      "BasePath": "_content/Mango.Web.App",
+      "RelativePath": "images/mango.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\mango.png"
+    },
+    {
+      "Identity": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\images\\order.PNG",
+      "SourceId": "Mango.Web.App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\",
+      "BasePath": "_content/Mango.Web.App",
+      "RelativePath": "images/order.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\order.PNG"
     },
     {
       "Identity": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\js\\site.js",

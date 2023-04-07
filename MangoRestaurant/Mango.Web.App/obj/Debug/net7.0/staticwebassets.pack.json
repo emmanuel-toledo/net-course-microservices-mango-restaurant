@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\images\\mango.png",
+      "PackagePath": "staticwebassets\\images\\mango.png"
+    },
+    {
+      "Id": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\images\\order.PNG",
+      "PackagePath": "staticwebassets\\images\\order.PNG"
+    },
+    {
       "Id": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

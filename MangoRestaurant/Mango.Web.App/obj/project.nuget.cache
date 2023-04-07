@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6T6KwMQJbQ99E+t83R84x8qp+i2F5C++/2qcgiPI1Fa+b3JCYNQQuCwsVqZYPixPZM+w7x24xNN96Ct5elMknA==",
+  "dgSpecHash": "oVpoNPLni95DHA8iIwQ247YyI49fI3NjTAY5t5Z9lONs4ewZNaSO95wH4nxqJp3G99IzdV5fA0eDX0UaKMHLwA==",
   "success": true,
   "projectFilePath": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\Mango.Web.App.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\642904\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
