@@ -1,5 +1,7 @@
 ﻿using Mango.Product.Web.Api.Models.Dto;
 using Mango.Product.Web.Api.Repository;
+using Mango.Service.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Product.Web.Api.Controllers
@@ -17,6 +19,7 @@ namespace Mango.Product.Web.Api.Controllers
             this._response = new ResponseDto(); // Inicializamos nuestra respuesta como una respuesta vacia.
         }
 
+        [Authorize]
         [HttpGet] // Definimos el tipo de petición que tendrá nuestro servicio.
         public async Task<object> Get()
         {
@@ -32,6 +35,7 @@ namespace Mango.Product.Web.Api.Controllers
             return _response; // Regresamos como respuesta nuestro objeto Response.
         }
 
+        [Authorize]
         [HttpGet] // Definimos el tipo de petición que tendrá nuestro servicio.
         [Route(("{id}"))] // Definimos la ruta de nuestro método con un parámetro llamado "id".
         public async Task<object> Get(int id)
@@ -65,6 +69,7 @@ namespace Mango.Product.Web.Api.Controllers
             return _response; // Regresamos como respuesta nuestro objeto Response.
         }
 
+        [Authorize]
         [HttpPut] // Definimos el tipo de petición que tendrá nuestro servicio.
         public async Task<object> Put([FromBody] ProductsDto productDto)
         {
@@ -81,6 +86,7 @@ namespace Mango.Product.Web.Api.Controllers
             return _response; // Regresamos como respuesta nuestro objeto Response.
         }
 
+        [Authorize(Roles = SD.Admin)]
         [HttpDelete] // Definimos el tipo de petición que tendrá nuestro servicio.
         [Route(("{id}"))] // Definimos la ruta de nuestro método con un parámetro llamado "id".
         public async Task<object> Delete(int id)

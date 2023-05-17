@@ -12,6 +12,6 @@ build_property.RootNamespace = Mango.Product.Web.Api
 build_property.ProjectDir = C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Product.Web.Api\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Product.Web.Api
 build_property._RazorSourceGeneratorDebug = 

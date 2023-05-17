@@ -21,4 +21,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mango.Service.Identity\Mango.Service.Identity.csproj" />
+  </ItemGroup>
+
 </Project>
