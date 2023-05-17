@@ -31,3 +31,11 @@ C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestau
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\obj\Debug\net7.0\ref\Mango.Web.App.dll
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\obj\Debug\net7.0\Mango.Web.App.csproj.CopyComplete
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Web.App\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

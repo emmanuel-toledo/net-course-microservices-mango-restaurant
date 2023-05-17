@@ -1,10 +1,26 @@
 {
   "version": 2,
-  "dgSpecHash": "GVP+IuW+BFMTZ6ceM88K/F4oJGVuETPeeppC/zRxhb1hnfmu8CUVM6gMwx6fbOqMXTDH9/cmvUOL6GylWWyIGw==",
+  "dgSpecHash": "4j0JvvHDiex1YdeoCRryiCdQ0/Y2eNrQwl3FJ3iTeRfLS1PErp3DXMHhCVIE2Ag2FlGX+TlDhWlNVzb5uhUJyQ==",
   "success": true,
   "projectFilePath": "C:\\Emmanuel Toledo\\Personales\\Cursos\\.NET - Microservicios\\Practicas\\MangoRestaurant\\Mango.Web.App\\Mango.Web.App.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\642904\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\7.0.5\\microsoft.aspnetcore.authentication.openidconnect.7.0.5.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.30.1\\microsoft.identitymodel.abstractions.6.30.1.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.30.1\\microsoft.identitymodel.jsonwebtokens.6.30.1.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.identitymodel.logging\\6.30.1\\microsoft.identitymodel.logging.6.30.1.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.15.1\\microsoft.identitymodel.protocols.6.15.1.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.15.1\\microsoft.identitymodel.protocols.openidconnect.6.15.1.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.30.1\\microsoft.identitymodel.tokens.6.30.1.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.30.1\\system.identitymodel.tokens.jwt.6.30.1.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\system.text.encodings.web\\4.7.2\\system.text.encodings.web.4.7.2.nupkg.sha512",
+    "C:\\Users\\642904\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
 }

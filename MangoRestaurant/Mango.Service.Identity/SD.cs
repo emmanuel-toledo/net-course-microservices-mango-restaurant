@@ -54,8 +54,8 @@ namespace Mango.Service.Identity
 
                     // Combinamos la url del archivo launchSettings.json de Mango.Web.App junto con el
                     // puerto "sslPort" que se tiene en dicho archivo.
-                    RedirectUris = { "https://localhost:44367/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:44367/signout-callback-oidc" },
+                    RedirectUris = { "https://localhost:7193/signin-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:7193/signout-callback-oidc" },
                     // Los scopes son los que definimos en la propiedad "ApiScopes" de esta misma clase.
                     AllowedScopes = new List<string>
                     {

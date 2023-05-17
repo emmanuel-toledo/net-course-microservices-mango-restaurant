@@ -415,3 +415,4 @@ C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestau
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Service.Identity\obj\Debug\net7.0\Mango.Service.Identity.pdb
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Service.Identity\obj\Debug\net7.0\Mango.Service.Identity.genruntimeconfig.cache
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Service.Identity\obj\Debug\net7.0\ref\Mango.Service.Identity.dll
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Service.Identity\bin\Debug\net7.0\keys\is-signing-key-73A76BF46F260DBFC98A9D81DAE8A06E.json

@@ -426,3 +426,4 @@ C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestau
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Product.Web.Api\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Product.Web.Api\bin\Debug\net7.0\Mango.Service.Identity.dll
 C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Product.Web.Api\bin\Debug\net7.0\Mango.Service.Identity.pdb
+C:\Emmanuel Toledo\Personales\Cursos\.NET - Microservicios\Practicas\MangoRestaurant\Mango.Product.Web.Api\bin\Debug\net7.0\keys\is-signing-key-73A76BF46F260DBFC98A9D81DAE8A06E.json
