@@ -1,7 +1,9 @@
+using Duende.IdentityServer.Services;
 using Mango.Service.Identity;
 using Mango.Service.Identity.DbContexts;
 using Mango.Service.Identity.Initializer;
 using Mango.Service.Identity.Models;
+using Mango.Service.Identity.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +40,9 @@ identityServer.AddDeveloperSigningCredential(); // Configuramos uso de credencia
 
 // Agregamos el servicio IDbInitializer.
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
+// Agregamos uso de ProfileService personalizado.
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 var app = builder.Build();
 

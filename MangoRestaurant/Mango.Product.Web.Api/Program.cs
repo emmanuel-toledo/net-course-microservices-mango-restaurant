@@ -92,6 +92,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Es necesario para usar el Token de Service.Identity.
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
