@@ -19,7 +19,6 @@ namespace Mango.Product.Web.Api.Controllers
             this._response = new ResponseDto(); // Inicializamos nuestra respuesta como una respuesta vacia.
         }
 
-        [Authorize]
         [HttpGet] // Definimos el tipo de petición que tendrá nuestro servicio.
         public async Task<object> Get()
         {
@@ -35,7 +34,6 @@ namespace Mango.Product.Web.Api.Controllers
             return _response; // Regresamos como respuesta nuestro objeto Response.
         }
 
-        [Authorize]
         [HttpGet] // Definimos el tipo de petición que tendrá nuestro servicio.
         [Route(("{id}"))] // Definimos la ruta de nuestro método con un parámetro llamado "id".
         public async Task<object> Get(int id)
@@ -53,6 +51,7 @@ namespace Mango.Product.Web.Api.Controllers
             return _response; // Regresamos como respuesta nuestro objeto Response.
         }
 
+        [Authorize]
         [HttpPost] // Definimos el tipo de petición que tendrá nuestro servicio.
         public async Task<object> Post([FromBody] ProductsDto productDto)
         {
