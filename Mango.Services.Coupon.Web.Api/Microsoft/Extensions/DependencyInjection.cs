@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mango.Services.Coupon.Web.Api.Data;
+using AutoMapper;
 
 namespace Mango.Services.Coupon.Web.Api.Microsoft.Extensions
 {
@@ -17,6 +18,8 @@ namespace Mango.Services.Coupon.Web.Api.Microsoft.Extensions
         {
             // Configure SQL Server connection.
             services.ConfigureDbContext(configuration);
+            // Configure AutoMapper.
+            services.ConfigureAutoMapper();
         }
 
         /// <summary>
@@ -30,6 +33,17 @@ namespace Mango.Services.Coupon.Web.Api.Microsoft.Extensions
             {
                 option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+        }
+
+        /// <summary>
+        /// Function to configure the use of auto mapper with the "MappingConfig" class.
+        /// </summary>
+        /// <param name="services">Application service collection.</param>
+        public static void ConfigureAutoMapper(this IServiceCollection services)
+        {
+            IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }
