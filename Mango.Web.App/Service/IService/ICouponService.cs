@@ -18,7 +18,7 @@ namespace Mango.Web.App.Service.IService
         /// Get all the coupons.
         /// </summary>
         /// <returns>Response model.</returns>
-        Task<ResponseDto?> GetAllCoupons();
+        Task<ResponseDto?> GetAllCouponsAsync();
 
         /// <summary>
         /// Get a coupon using a unique identifier.
