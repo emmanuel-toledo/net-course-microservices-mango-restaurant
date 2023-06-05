@@ -21,5 +21,13 @@ namespace Mango.Services.Auth.Web.Api.Service.IService
         /// <param name="loginRequestDto">Login request model.</param>
         /// <returns>Login response model.</returns>
         Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
+
+        /// <summary>
+        /// Function to add a new role to a specific user.
+        /// </summary>
+        /// <param name="email">Unique email address.</param>
+        /// <param name="roleName">Role name to assign.</param>
+        /// <returns>Flag is the assignment was correct.</returns>
+        Task<bool> AssignRole(string email, string roleName);
     }
 }

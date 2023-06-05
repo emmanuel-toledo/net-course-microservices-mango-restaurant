@@ -13,16 +13,21 @@
         /// <summary>
         /// Get and set name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Get and set phone number.
         /// </summary>
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; } = string.Empty;
 
         /// <summary>
         /// Get and set password.
         /// </summary>
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Get and set role (this is optional only to assign a new rol).
+        /// </summary>
+        public string? Role { get; set; }
     }
 }

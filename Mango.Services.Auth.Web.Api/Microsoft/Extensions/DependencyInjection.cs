@@ -26,6 +26,7 @@ namespace Mango.Services.Auth.Web.Api.Microsoft.Extensions
             // Configure the JwtOptions with configuration information.
             services.Configure<JwtOptions>(configuration.GetSection("ApiSettings:JwtOptions"));
             // Register custom services.
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddScoped<IAuthService, AuthService>();
         }
 
