@@ -33,10 +33,11 @@ namespace Mango.Services.Auth.Web.Api.Controllers
             var errorMessage = await _authService.Register(model);
             if(!string.IsNullOrEmpty(errorMessage))
             {
-                _response.IsSuccess = true;
+                _response.IsSuccess = false;
                 _response.Message = errorMessage;
                 return BadRequest(_response);
             }
+            _response.IsSuccess = true;
             return Ok(_response);
         }
 

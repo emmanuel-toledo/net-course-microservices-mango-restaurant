@@ -11,7 +11,8 @@ namespace Mango.Web.App.Service.IService
         /// Method to execute a new request to a microservice.
         /// </summary>
         /// <param name="requestDto">Request configuration model.</param>
+        /// <param name="withBearer">Flag to validate if the request requires access token.</param>
         /// <returns>Response model.</returns>
-        Task<ResponseDto?> SendAsync(RequestDto requestDto);
+        Task<ResponseDto?> SendAsync(RequestDto requestDto, bool withBearer = true);
     }
 }

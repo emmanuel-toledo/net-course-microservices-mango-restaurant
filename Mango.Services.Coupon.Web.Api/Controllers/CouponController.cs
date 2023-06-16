@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Mango.Services.Coupon.Web.Api.Data;
 using Mango.Services.Coupon.Web.Api.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.Coupon.Web.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] // Just signin users can use this service.
     public class CouponController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -77,6 +79,7 @@ namespace Mango.Services.Coupon.Web.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")] // Only role admin can execute this method.
         public ResponseDto Post([FromBody] CouponDto couponDto)
         {
             try
@@ -97,6 +100,7 @@ namespace Mango.Services.Coupon.Web.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Put([FromBody] CouponDto couponDto)
         {
             try
@@ -118,6 +122,7 @@ namespace Mango.Services.Coupon.Web.Api.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Delete([FromRoute] int id)
         {
             try

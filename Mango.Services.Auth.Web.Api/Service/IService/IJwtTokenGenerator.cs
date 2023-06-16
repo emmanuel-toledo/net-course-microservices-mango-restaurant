@@ -11,7 +11,8 @@ namespace Mango.Services.Auth.Web.Api.Service.IService
         /// Generate a new access token.
         /// </summary>
         /// <param name="applicationUser">Succes user login.</param>
+        /// <param name="roles">User collection roles.</param>
         /// <returns>Token string.</returns>
-        string GenerateToken(ApplicationUser applicationUser);
+        string GenerateToken(ApplicationUser applicationUser, IEnumerable<string> roles);
     }
 }

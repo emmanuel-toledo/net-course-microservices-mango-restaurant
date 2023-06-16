@@ -14,17 +14,21 @@ namespace Mango.Web.App.Service
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public BaseService(IHttpClientFactory httpClientFactory)
+        private readonly ITokenProvider _tokenProvider;
+
+        public BaseService(IHttpClientFactory httpClientFactory, ITokenProvider tokenProvider)
         {
             _httpClientFactory = httpClientFactory;
+            _tokenProvider = tokenProvider;
         }
 
         /// <summary>
         /// Execute a REST Service request to an API.
         /// </summary>
         /// <param name="requestDto">Request configuration model.</param>
+        /// <param name="withBearer">Flag to validate if the request requires access token.</param>
         /// <returns>Response model.</returns>
-        public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
+        public async Task<ResponseDto?> SendAsync(RequestDto requestDto, bool withBearer = true)
         {
             try
             {
@@ -33,8 +37,12 @@ namespace Mango.Web.App.Service
                 HttpRequestMessage message = new();
                 message.Headers.Add("Accept", "application/json");
 
-                // TODO: Configure the use of Access Token.
-
+                // Set access Token if request needs.
+                if (withBearer)
+                {
+                    var token = _tokenProvider.GetToken();
+                    message.Headers.Add("Authorization", $"Bearer {token}");
+                }
 
                 // Configure the request details.
                 message.RequestUri = new Uri(requestDto.Url);

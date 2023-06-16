@@ -1,6 +1,7 @@
 ﻿using Mango.Web.App.Service;
 using Mango.Web.App.Service.IService;
 using Mango.Web.App.Utility;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Mango.Web.App.Microsoft.Extensions
 {
@@ -20,6 +21,7 @@ namespace Mango.Web.App.Microsoft.Extensions
             services.AddHttpContextAccessor();
             services.AddHttpClient();
             services.AddHttpClient<ICouponService, CouponService>();
+            services.AddHttpClient<IAuthService, AuthService>();
 
             // Seed services urls for the application.
             services.SeedServicesUrls(configuration);
@@ -27,6 +29,16 @@ namespace Mango.Web.App.Microsoft.Extensions
             // Configure services in the application.
             services.AddScoped<IBaseService, BaseService>();
             services.AddScoped<ICouponService, CouponService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenProvider, TokenProvider>();
+
+            // Configure the authentications.
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromHours(10);
+                options.LoginPath = "/Auth/Login";
+                options.AccessDeniedPath = "/Auth/AccessDenied";
+            });
         }
 
         /// <summary>
@@ -37,6 +49,7 @@ namespace Mango.Web.App.Microsoft.Extensions
         public static void SeedServicesUrls(this IServiceCollection services, IConfiguration configuration)
         {
             SD.CouponAPIBase = configuration["ServiceUrls:CouponAPI"]!;
+            SD.AuthAPIBase = configuration["ServiceUrls:AuthAPI"]!;
         }
     }
 }
