@@ -22,6 +22,7 @@ namespace Mango.Web.App.Microsoft.Extensions
             services.AddHttpClient();
             services.AddHttpClient<ICouponService, CouponService>();
             services.AddHttpClient<IAuthService, AuthService>();
+            services.AddHttpClient<IProductService, ProductService>();
 
             // Seed services urls for the application.
             services.SeedServicesUrls(configuration);
@@ -31,6 +32,7 @@ namespace Mango.Web.App.Microsoft.Extensions
             services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenProvider, TokenProvider>();
+            services.AddScoped<IProductService, ProductService>();
 
             // Configure the authentications.
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
@@ -50,6 +52,7 @@ namespace Mango.Web.App.Microsoft.Extensions
         {
             SD.CouponAPIBase = configuration["ServiceUrls:CouponAPI"]!;
             SD.AuthAPIBase = configuration["ServiceUrls:AuthAPI"]!;
+            SD.ProductAPIBase = configuration["ServiceUrls:ProductAPI"]!;
         }
     }
 }

@@ -16,6 +16,11 @@
         public static string AuthAPIBase { get; set; }
 
         /// <summary>
+        /// Get and set the base url address for Product Service.
+        /// </summary>
+        public static string ProductAPIBase { get; set; }
+
+        /// <summary>
         /// Const admin role variable.
         /// </summary>
         public const string RoleAdmin = "ADMIN";
