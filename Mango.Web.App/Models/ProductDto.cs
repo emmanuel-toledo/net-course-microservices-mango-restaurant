@@ -1,4 +1,6 @@
-﻿namespace Mango.Web.App.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Mango.Web.App.Models
 {
     /// <summary>
     /// This class contains the deffinition of a product in the DB.
@@ -34,5 +36,11 @@
         /// Get and set the image url of a product.
         /// </summary>
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Get and set the count of a product.
+        /// </summary>
+        [Range(1, 100)]
+        public int Count { get; set; } = 1;
     }
 }

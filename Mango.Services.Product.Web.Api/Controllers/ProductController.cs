@@ -8,7 +8,6 @@ namespace Mango.Services.Product.Web.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // Just signin users can use this service.
     public class ProductController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -60,8 +59,8 @@ namespace Mango.Services.Product.Web.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMIN")] // Only role admin can execute this method.
-        public ResponseDto Post([FromBody] ProductDto ProductDto)
+        [Authorize(Roles = "ADMIN")] // Only signin users with admin role can execute this method.
+		public ResponseDto Post([FromBody] ProductDto ProductDto)
         {
             try
             {
@@ -81,8 +80,8 @@ namespace Mango.Services.Product.Web.Api.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "ADMIN")]
-        public ResponseDto Put([FromBody] ProductDto ProductDto)
+        [Authorize(Roles = "ADMIN")] // Only signin users with admin role can execute this method.
+		public ResponseDto Put([FromBody] ProductDto ProductDto)
         {
             try
             {
@@ -103,8 +102,8 @@ namespace Mango.Services.Product.Web.Api.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        [Authorize(Roles = "ADMIN")]
-        public ResponseDto Delete([FromRoute] int id)
+        [Authorize(Roles = "ADMIN")] // Only signin users with admin role can execute this method.
+		public ResponseDto Delete([FromRoute] int id)
         {
             try
             {
