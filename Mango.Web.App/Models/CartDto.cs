@@ -1,4 +1,4 @@
-﻿namespace Mango.Services.ShoppingCart.Web.Api.Models.Dto
+﻿namespace Mango.Web.App.Models
 {
     /// <summary>
     /// This class represents a cart object with all the details.
@@ -13,6 +13,6 @@
         /// <summary>
         /// Get and set cart details collection.
         /// </summary>
-        public IEnumerable<CartDetailsDto> CartDetails { get; set; } = new HashSet<CartDetailsDto>();
+        public IEnumerable<CartDetailsDto> CartDetails { get; set; }
     }
 }

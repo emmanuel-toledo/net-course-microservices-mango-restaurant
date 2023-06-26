@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using Mango.Services.ShoppingCart.Web.Api.Data;
 using Mango.Services.ShoppingCart.Web.Api.Service.IService;
 using Mango.Services.ShoppingCart.Web.Api.Service;
+using Mango.Services.ShoppingCart.Web.Api.Utility;
 
 namespace Mango.Services.ShoppingCart.Web.Api.Microsoft.Extensions
 {
@@ -133,19 +134,23 @@ namespace Mango.Services.ShoppingCart.Web.Api.Microsoft.Extensions
         /// <param name="configuration">Application configuration.</param>
         public static void ConfigureInterservices(this IServiceCollection services, IConfiguration configuration)
         {
+            // Add use of backend api authentication http client handler.
+            services.AddHttpContextAccessor();
+            services.AddScoped<BackendApiAuthenticationHttpClientHandler>();
+
             // Add use of Product microservice.
             services.AddScoped<IProductService, ProductService>();
             services.AddHttpClient("Product", u =>
             {
                 u.BaseAddress = new Uri(configuration["ServiceUrls:ProductAPI"]);
-            });
+            }).AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
 
             // Add use of Coupon microservice.
             services.AddScoped<ICouponService, CouponService>();
             services.AddHttpClient("Coupon", u =>
             {
                 u.BaseAddress = new Uri(configuration["ServiceUrls:CouponAPI"]);
-            });
+            }).AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
         }
 
         /// <summary>

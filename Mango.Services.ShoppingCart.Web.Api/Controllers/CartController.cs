@@ -75,7 +75,7 @@ namespace Mango.Services.ShoppingCart.Web.Api.Controllers
         }
 
         [HttpPost("CartUpsert")]
-        public async Task<ResponseDto> CartUpsert(CartDto cartDto)
+        public async Task<ResponseDto> CartUpsert([FromBody] CartDto cartDto)
         {
             try
             {

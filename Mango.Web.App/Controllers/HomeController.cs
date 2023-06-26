@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Mango.Web.App.Controllers
 {
@@ -13,11 +14,13 @@ namespace Mango.Web.App.Controllers
 
         private readonly IProductService _productService;
 
+        private readonly ICartService _cartService;
 
-		public HomeController(ILogger<HomeController> logger, IProductService productService)
+		public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService)
         {
             _logger = logger;
             _productService = productService;
+            _cartService = cartService;
         }
 
         public async Task<IActionResult> Index()
@@ -55,6 +58,42 @@ namespace Mango.Web.App.Controllers
             }
             // Return view with model.
             return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ActionName("ProductDetails")]
+        public async Task<IActionResult> ProductDetails(ProductDto productDto)
+        {
+            // Add a new product to the sopping cart.
+            // Create new instance of cart dto.
+            CartDto cartDto = new()
+            {
+                CartHeader = new()
+                {
+                    UserId = User.Claims.Where(u => u.Type == JwtRegisteredClaimNames.Sub)?.FirstOrDefault()?.Value,
+                }
+            };
+            CartDetailsDto cartDetailsDto = new()
+            {
+                Count = productDto.Count,
+                ProductId = productDto.ProductId,
+            };
+            cartDto.CartDetails = new List<CartDetailsDto>() { cartDetailsDto };
+
+            // Upsert to the database.
+            ResponseDto? response = await _cartService.UpsertCartAsync(cartDto);
+            if (response != null && response.IsSuccess)
+            {
+                TempData["success"] = "Item has been added to the Sopping Cart";
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                TempData["error"] = response?.Message;
+            }
+            // Return view with model.
+            return View(productDto);
         }
 
         public IActionResult Privacy()

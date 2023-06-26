@@ -8,7 +8,7 @@ namespace Mango.Services.Coupon.Web.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize] // Just signin users can use this service.
+    [Authorize] // Just signin users can use this service.
     public class CouponController : ControllerBase
     {
         private readonly AppDbContext _db;
