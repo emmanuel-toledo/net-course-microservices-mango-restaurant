@@ -41,5 +41,15 @@ namespace Mango.Web.App.Service.IService
         /// <param name="cartDto">Cart object.</param>
         /// <returns>Response model.</returns>
         Task<ResponseDto?> RemoveCouponAsync(CartDto cartDto);
+
+        /// <summary>
+        /// Function to call a Azure Service Bus to "send" email.
+        /// <para>
+        /// For this project we only save the data in a database, we don't sent an email.
+        /// </para>
+        /// </summary>
+        /// <param name="cartDto">Cart object.</param>
+        /// <returns>Response model.</returns>
+        Task<ResponseDto?> EmailCart(CartDto cartDto);
     }
 }

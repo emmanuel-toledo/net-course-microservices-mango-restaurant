@@ -29,5 +29,25 @@
         /// Get and set cart header total.
         /// </summary>
         public double CartTotal { get; set; }
+
+        /// <summary>
+        /// (Optional) Get and set user first name.
+        /// </summary>
+        public string? FirstName { get; set; }
+
+        /// <summary>
+        /// (Optional) Get and set user last name.
+        /// </summary>
+        public string? LastName { get; set; }
+
+        /// <summary>
+        /// (Optional) Get and set user phone.
+        /// </summary>
+        public string? Phone { get; set; }
+
+        /// <summary>
+        /// (Optional) Get and set user email.
+        /// </summary>
+        public string? Email { get; set; }
     }
 }

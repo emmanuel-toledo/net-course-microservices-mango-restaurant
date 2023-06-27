@@ -42,3 +42,19 @@ This project was modified to use ```7003``` port for the ```https``` profile in 
 
 ### Order API
 This project was modified to use ```7004``` port for the ```https``` profile in the ```launchSettings.json``` file.
+
+## Additional knowledge
+
+### Azure Service Bus
+
+In the solution we have an integration folder where we have a project with name ```Mango.Integration.MessageBus```. This project can help 
+us to connect to an azure resource named ```Service Bus```.
+
+We create this resource with a ```free azure account``` and the ```Service Bus``` is ```Standar``` type. Remember that 
+a ```Queue``` and ```Topic``` in this kind of resource must be unique.
+
+Any ```Azure Resource``` have a cost for this project, for that reason we use a ```free azure account```.
+
+To get the ```Connection String``` from ```Azure Service Bus``` resource you have to go to ```Shared access policies```
+section and get the ```Primary Connection String``` from ```root``` Policy. Also you can create a new one.
+

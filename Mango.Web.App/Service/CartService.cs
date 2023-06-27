@@ -89,5 +89,23 @@ namespace Mango.Web.App.Service
                 Url = SD.ShoppingCartAPIBase + "/api/cart/RemoveCoupon"
             });
         }
+
+        /// <summary>
+        /// Function to call a Azure Service Bus to "send" email.
+        /// <para>
+        /// For this project we only save the data in a database, we don't sent an email.
+        /// </para>
+        /// </summary>
+        /// <param name="cartDto">Cart object.</param>
+        /// <returns>Response model.</returns>
+        public async Task<ResponseDto?> EmailCart(CartDto cartDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = cartDto,
+                Url = SD.ShoppingCartAPIBase + "/api/cart/EmailCartRequest"
+            });
+        }
     }
 }

@@ -8,6 +8,7 @@ using Mango.Services.ShoppingCart.Web.Api.Data;
 using Mango.Services.ShoppingCart.Web.Api.Service.IService;
 using Mango.Services.ShoppingCart.Web.Api.Service;
 using Mango.Services.ShoppingCart.Web.Api.Utility;
+using Mango.Integration.MessageBus;
 
 namespace Mango.Services.ShoppingCart.Web.Api.Microsoft.Extensions
 {
@@ -151,6 +152,9 @@ namespace Mango.Services.ShoppingCart.Web.Api.Microsoft.Extensions
             {
                 u.BaseAddress = new Uri(configuration["ServiceUrls:CouponAPI"]);
             }).AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
+
+            // Configure message bus to connect to Azure Service Bus resource.
+            services.AddScoped<IMessageBus, MessageBus>();
         }
 
         /// <summary>
