@@ -30,6 +30,9 @@ Something that is important to say is that when you configure your ```Auth API``
 
 - add-migration addIdentityTables
 - update-database
+- 
+
+Inside this project we have an implementation of ```IMessageBus``` service to send a new ```queue``` request to ```Azure Service Bus```.
 
 ### Coupon API
 This project was modified to use ```7001``` port for the ```https``` profile in the ```launchSettings.json``` file.
@@ -43,9 +46,21 @@ This project was modified to use ```7003``` port for the ```https``` profile in 
 ### Order API
 This project was modified to use ```7004``` port for the ```https``` profile in the ```launchSettings.json``` file.
 
+### Email API
+
+This project is the one who manage any call to ```Azure Service Bus``` for ```emailshoppingcart queues```.
+
+You can test the use of this project starting everything but not this project, after that send some emails from the app and then, start
+your application with all the projects and see how ```Email API``` manage all the ```Queues``` from ```Azure Service Bus```.
+
 ## Additional knowledge
 
 ### Azure Service Bus
+
+```Azure Service Bus``` is a resource that can help us to manage ```async tasks```, this is similar to ```Apache Kafka```. You sent a request
+and ```Azure``` manage the same request. This service evalue the service that needs to call and once that is up and ready, sent the request, it is like a middleware.
+
+Usually this resource store a request for ```14 days```, but this value can be modified.
 
 In the solution we have an integration folder where we have a project with name ```Mango.Integration.MessageBus```. This project can help 
 us to connect to an azure resource named ```Service Bus```.
@@ -57,4 +72,3 @@ Any ```Azure Resource``` have a cost for this project, for that reason we use a 
 
 To get the ```Connection String``` from ```Azure Service Bus``` resource you have to go to ```Shared access policies```
 section and get the ```Primary Connection String``` from ```root``` Policy. Also you can create a new one.
-

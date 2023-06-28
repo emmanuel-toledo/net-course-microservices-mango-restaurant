@@ -207,7 +207,7 @@ namespace Mango.Services.ShoppingCart.Web.Api.Controllers
         {
             try
             {
-                await _messageBus.PublishMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCart"));
+                await _messageBus.PublishMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCartQueue"));
                 _response.IsSuccess = true;
             }
             catch (Exception ex)

@@ -2,6 +2,7 @@
 using Mango.Services.Auth.Web.Api.Models.Dto;
 using Mango.Services.Coupon.Web.Api.Models.Dto;
 using Mango.Services.Auth.Web.Api.Service.IService;
+using Mango.Integration.MessageBus;
 
 namespace Mango.Services.Auth.Web.Api.Controllers
 {
@@ -11,11 +12,17 @@ namespace Mango.Services.Auth.Web.Api.Controllers
     {
         private readonly IAuthService _authService;
 
+        private readonly IMessageBus _messageBus;
+
+        private readonly IConfiguration _configuration;
+
         protected ResponseDto _response;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IMessageBus messageBus, IConfiguration configuration)
         {
             _authService = authService;
+            _messageBus = messageBus;
+            _configuration = configuration;
             _response = new ResponseDto();
         }
 
@@ -37,6 +44,8 @@ namespace Mango.Services.Auth.Web.Api.Controllers
                 _response.Message = errorMessage;
                 return BadRequest(_response);
             }
+            // Sent a new queue to Azure Service Bus.
+            await _messageBus.PublishMessage(model.Email, _configuration.GetValue<string>("TopicAndQueueNames:RegisterUserQueue"));
             _response.IsSuccess = true;
             return Ok(_response);
         }

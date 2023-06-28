@@ -1,4 +1,5 @@
-﻿using Mango.Services.Auth.Web.Api.Data;
+﻿using Mango.Integration.MessageBus;
+using Mango.Services.Auth.Web.Api.Data;
 using Mango.Services.Auth.Web.Api.Models;
 using Mango.Services.Auth.Web.Api.Service;
 using Mango.Services.Auth.Web.Api.Service.IService;
@@ -28,6 +29,8 @@ namespace Mango.Services.Auth.Web.Api.Microsoft.Extensions
             // Register custom services.
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddScoped<IAuthService, AuthService>();
+            // Register Message Bus service to interact with Azure Service Bus.
+            services.AddScoped<IMessageBus, MessageBus>();
         }
 
         /// <summary>
