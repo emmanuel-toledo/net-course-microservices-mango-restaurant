@@ -30,7 +30,6 @@ Something that is important to say is that when you configure your ```Auth API``
 
 - add-migration addIdentityTables
 - update-database
-- 
 
 Inside this project we have an implementation of ```IMessageBus``` service to send a new ```queue``` request to ```Azure Service Bus```.
 
@@ -48,7 +47,7 @@ This project was modified to use ```7004``` port for the ```https``` profile in 
 
 ### Email API
 
-This project is the one who manage any call to ```Azure Service Bus``` for ```emailshoppingcart queues```.
+This project is the one who manage any call to ```Azure Service Bus``` for ```emailshoppingcart``` and ```registeruser``` ```queues```.
 
 You can test the use of this project starting everything but not this project, after that send some emails from the app and then, start
 your application with all the projects and see how ```Email API``` manage all the ```Queues``` from ```Azure Service Bus```.
