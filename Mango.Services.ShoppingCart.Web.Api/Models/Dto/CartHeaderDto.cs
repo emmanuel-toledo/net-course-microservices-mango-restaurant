@@ -31,14 +31,9 @@
         public double CartTotal { get; set; }
 
         /// <summary>
-        /// (Optional) Get and set user first name.
+        /// (Optional) Get and set user name.
         /// </summary>
-        public string? FirstName { get; set; }
-
-        /// <summary>
-        /// (Optional) Get and set user last name.
-        /// </summary>
-        public string? LastName { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// (Optional) Get and set user phone.

@@ -11,15 +11,45 @@ namespace Mango.Web.App.Controllers
     {
         private readonly ICartService _cartService;
 
-        public CartController(ICartService cartService)
+        private readonly IOrderService _orderService;
+
+        public CartController(ICartService cartService, IOrderService orderService)
         {
             _cartService = cartService;
+            _orderService = orderService;
         }
 
         [Authorize]
         public async Task<IActionResult> CartIndex()
         {
             return View(await LoadCartDtoBasedOnLoggedInUser());
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Checkout()
+        {
+            return View(await LoadCartDtoBasedOnLoggedInUser());
+        }
+
+        [HttpPost]
+        [ActionName("Checkout")]
+        public async Task<IActionResult> Checkout(CartDto cartDto)
+        {
+            // We reload the user's cart.
+            CartDto cart = await LoadCartDtoBasedOnLoggedInUser();
+            // Set users values from request body.
+            cart.CartHeader.Phone = cartDto.CartHeader.Phone;
+            cart.CartHeader.Email = cartDto.CartHeader.Email;
+            cart.CartHeader.Name = cartDto.CartHeader.Name;
+            // Create new order in the database.
+            var response = await _orderService.CreateOrderAsync(cart);
+            OrderHeaderDto orderHeaderDto = JsonConvert.DeserializeObject<OrderHeaderDto>(Convert.ToString(response.Result));
+            
+            if(response != null && response.IsSuccess)
+            {
+                // Redirect to gateway to make the payment.
+            }
+            return View();
         }
 
         public async Task<IActionResult> Remove(int cartDetailsId)

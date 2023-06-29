@@ -15,6 +15,7 @@ namespace Mango.Web.App.Service
         {
             _baseService = baseService;
         }
+
         /// <summary>
         /// Get all the Products.
         /// </summary>

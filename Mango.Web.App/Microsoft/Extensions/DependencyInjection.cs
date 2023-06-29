@@ -24,6 +24,7 @@ namespace Mango.Web.App.Microsoft.Extensions
             services.AddHttpClient<IAuthService, AuthService>();
             services.AddHttpClient<IProductService, ProductService>();
             services.AddHttpClient<ICartService, CartService>();
+            services.AddHttpClient<IOrderService, OrderService>();
 
             // Seed services urls for the application.
             services.SeedServicesUrls(configuration);
@@ -35,6 +36,7 @@ namespace Mango.Web.App.Microsoft.Extensions
             services.AddScoped<ITokenProvider, TokenProvider>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             // Configure the authentications.
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
@@ -56,6 +58,7 @@ namespace Mango.Web.App.Microsoft.Extensions
             SD.AuthAPIBase = configuration["ServiceUrls:AuthAPI"]!;
             SD.ProductAPIBase = configuration["ServiceUrls:ProductAPI"]!;
             SD.ShoppingCartAPIBase = configuration["ServiceUrls:ShoppingCartAPI"]!;
+            SD.OrderAPIBase = configuration["ServiceUrls:OrderAPI"]!;
         }
     }
 }

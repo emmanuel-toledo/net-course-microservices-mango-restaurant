@@ -1,4 +1,4 @@
-﻿namespace Mango.Services.Email.Web.Api.Models.Dto
+﻿namespace Mango.Services.Order.Web.Api.Models.Dto
 {
     /// <summary>
     /// This class defines a cart header in the database.
@@ -31,17 +31,17 @@
         public double CartTotal { get; set; }
 
         /// <summary>
-        /// (Optional) Get and set user name.
+        /// Get and set user name.
         /// </summary>
         public string? Name { get; set; }
 
         /// <summary>
-        /// (Optional) Get and set user phone.
+        /// Get and set user phone.
         /// </summary>
         public string? Phone { get; set; }
 
         /// <summary>
-        /// (Optional) Get and set user email.
+        /// Get and set user email.
         /// </summary>
         public string? Email { get; set; }
     }

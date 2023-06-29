@@ -26,6 +26,11 @@
         public static string ShoppingCartAPIBase { get; set; }
 
         /// <summary>
+        /// Get and set the base url address for Order Service.
+        /// </summary>
+        public static string OrderAPIBase { get; set; }
+
+        /// <summary>
         /// Const admin role variable.
         /// </summary>
         public const string RoleAdmin = "ADMIN";
