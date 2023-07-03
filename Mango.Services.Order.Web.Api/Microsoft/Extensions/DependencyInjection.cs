@@ -9,6 +9,7 @@ using Mango.Services.Order.Web.Api.Service;
 using Mango.Services.Order.Web.Api.Service.IService;
 using Mango.Integration.MessageBus;
 using Mango.Services.Order.Web.Api.Data;
+using Stripe;
 
 namespace Mango.Services.Order.Web.Api.Microsoft.Extensions
 {
@@ -34,6 +35,8 @@ namespace Mango.Services.Order.Web.Api.Microsoft.Extensions
             services.ConfigureSwaggerDoc();
             // Configure any related microservice to this one.
             services.ConfigureInterservices(configuration);
+            // Add api key from stripe portal (https://dashboard.stripe.com/test/dashboard).
+            StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
         }
 
         /// <summary>
@@ -140,7 +143,7 @@ namespace Mango.Services.Order.Web.Api.Microsoft.Extensions
             services.AddScoped<BackendApiAuthenticationHttpClientHandler>();
 
             // Add use of Product microservice.
-            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductService, Api.Service.ProductService>();
             services.AddHttpClient("Product", u =>
             {
                 u.BaseAddress = new Uri(configuration["ServiceUrls:ProductAPI"]);

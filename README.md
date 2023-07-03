@@ -71,3 +71,23 @@ Any ```Azure Resource``` have a cost for this project, for that reason we use a 
 
 To get the ```Connection String``` from ```Azure Service Bus``` resource you have to go to ```Shared access policies```
 section and get the ```Primary Connection String``` from ```root``` Policy. Also you can create a new one.
+
+### Stripe - Payment integration
+
+We will use ```stripe``` for payments integration in the application (```https://stripe.com/en-mx```). You will need to create a new Developer 
+account for work with this platform.
+
+The following links can help us to understand the integration with ```Stripe.Net``` library in ```C# .NET```.
+- https://stripe.com/docs/checkout/quickstart?lang=dotnet
+- https://stripe.com/docs/api/checkout/sessions/create
+
+When we want to apply a coupon code using ```stripe```, we need to create a coupon in ```stripe platform```. To create one coupon click in 
+the following link https://dashboard.stripe.com/test/coupons.
+
+To know more about the topic you can see the following doc (https://stripe.com/docs/api/coupons/create).
+
+We also can know what is the current status of a payment intent, follow the link and see more about it (https://stripe.com/docs/api/errors#errors-payment_intent-status)
+
+
+
+

@@ -14,5 +14,19 @@ namespace Mango.Web.App.Service.IService
         /// <param name="cartDto">Cart to model.</param>
         /// <returns>Response model.</returns>
         Task<ResponseDto?> CreateOrderAsync(CartDto cartDto);
+
+        /// <summary>
+        /// Function to create a new session for stripe payment integration.
+        /// </summary>
+        /// <param name="stripeRequestDto">Stripe request for stripe library.</param>
+        /// <returns>Response model.</returns>
+        Task<ResponseDto?> CreateStripeSession(StripeRequestDto stripeRequestDto);
+
+        /// <summary>
+        /// Function to validate the status of a payment in stripe.
+        /// </summary>
+        /// <param name="orderHeaderId">Order header id</param>
+        /// <returns>Response model.</returns>
+        Task<ResponseDto?> ValidateStripeSession(int orderHeaderId);
     }
 }

@@ -3,6 +3,7 @@ using Mango.Services.Coupon.Web.Api.Data;
 using Mango.Services.Coupon.Web.Api.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace Mango.Services.Coupon.Web.Api.Controllers
 {
@@ -88,6 +89,19 @@ namespace Mango.Services.Coupon.Web.Api.Controllers
                 var coupon = _mapper.Map<Models.Coupon>(couponDto);
                 _db.Coupons.Add(coupon);
                 _db.SaveChanges();
+
+                // Create coupon in stripe.
+                var options = new CouponCreateOptions
+                {
+                    AmountOff = (long)(couponDto.DiscountAmount * 100),
+                    Name = couponDto.CouponCode,
+                    Currency = "usd",
+                    Id = couponDto.CouponCode
+                };
+
+                var service = new CouponService();
+                service.Create(options);
+
                 // Use automapper to convert Coupon model to CouponDto.
                 _response.Result = couponDto;
             }
@@ -132,6 +146,10 @@ namespace Mango.Services.Coupon.Web.Api.Controllers
                 // Remove coupon and save changes.
                 _db.Coupons.Remove(obj);
                 _db.SaveChanges();
+
+                // Delete coupon from stripe.
+                var service = new CouponService();
+                service.Delete(obj.CouponCode);
             }
             catch (Exception ex)
             {

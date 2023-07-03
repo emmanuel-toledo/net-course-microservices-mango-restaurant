@@ -31,5 +31,35 @@ namespace Mango.Web.App.Service
                 Data = cartDto
             });
         }
+
+        /// <summary>
+        /// Function to create a new session for stripe payment integration.
+        /// </summary>
+        /// <param name="stripeRequestDto">Stripe request for stripe library.</param>
+        /// <returns>Response model.</returns>
+        public async Task<ResponseDto?> CreateStripeSession(StripeRequestDto stripeRequestDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Url = SD.OrderAPIBase + "/api/order/CreateStripeSession",
+                Data = stripeRequestDto
+            });
+        }
+
+        /// <summary>
+        /// Function to validate the status of a payment in stripe.
+        /// </summary>
+        /// <param name="orderHeaderId">Order header id</param>
+        /// <returns>Response model.</returns>
+        public async Task<ResponseDto?> ValidateStripeSession(int orderHeaderId)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Url = SD.OrderAPIBase + "/api/order/ValidateStripeSession",
+                Data = orderHeaderId
+            });
+        }
     }
 }

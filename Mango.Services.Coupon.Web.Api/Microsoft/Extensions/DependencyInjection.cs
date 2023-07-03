@@ -4,6 +4,7 @@ using AutoMapper;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Stripe;
 
 namespace Mango.Services.Coupon.Web.Api.Microsoft.Extensions
 {
@@ -25,6 +26,8 @@ namespace Mango.Services.Coupon.Web.Api.Microsoft.Extensions
             services.ConfigureAutoMapper();
             // Configure Authentication and Authorization.
             services.ConfigureAuthentication(configuration);
+            // Add api key from stripe portal (https://dashboard.stripe.com/test/dashboard).
+            StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
         }
 
         /// <summary>
