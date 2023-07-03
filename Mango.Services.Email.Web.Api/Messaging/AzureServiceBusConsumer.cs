@@ -1,4 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Mango.Services.Email.Web.Api.Message;
 using Mango.Services.Email.Web.Api.Models.Dto;
 using Mango.Services.Email.Web.Api.Services;
 using Newtonsoft.Json;
@@ -17,6 +18,10 @@ namespace Mango.Services.Email.Web.Api.Messaging
 
         private readonly string registerUserQueue;
 
+        private readonly string orderCreatedTopic;
+
+        private readonly string orderCreatedEmailSubscription;
+
         private readonly IConfiguration _configuration;
 
         private readonly EmailService _emailService;
@@ -24,6 +29,8 @@ namespace Mango.Services.Email.Web.Api.Messaging
         private ServiceBusProcessor _emailCartProcessor;
 
         private ServiceBusProcessor _registerUserProcessor;
+
+        private ServiceBusProcessor _emailOrderPlacedProcessor;
 
         public AzureServiceBusConsumer(IConfiguration configuration, EmailService emailService)
         {
@@ -34,12 +41,15 @@ namespace Mango.Services.Email.Web.Api.Messaging
             serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
             emailCartQueue = _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCartQueue");
             registerUserQueue = _configuration.GetValue<string>("TopicAndQueueNames:RegisterUserQueue");
+            orderCreatedTopic = _configuration.GetValue<string>("TopicAndQueueNames:OrderCreatedTopic");
+            orderCreatedEmailSubscription = _configuration.GetValue<string>("TopicAndQueueNames:OrderCreated_Email_Subscription");
 
             // Create client for Azure Service Bus resource.
             var client = new ServiceBusClient(serviceBusConnectionString);
             // Create the processor for a Queue.
             _emailCartProcessor = client.CreateProcessor(emailCartQueue);
             _registerUserProcessor = client.CreateProcessor(registerUserQueue);
+            _emailOrderPlacedProcessor = client.CreateProcessor(orderCreatedTopic, orderCreatedEmailSubscription);
         }
 
         /// <summary>
@@ -55,6 +65,10 @@ namespace Mango.Services.Email.Web.Api.Messaging
             _registerUserProcessor.ProcessMessageAsync += OnUserRegisterRequestReceived;
             _registerUserProcessor.ProcessErrorAsync += ErrorHandler;
             await _registerUserProcessor.StartProcessingAsync();
+
+            _emailOrderPlacedProcessor.ProcessMessageAsync += OnOrderPlacedRequestReceived;
+            _emailOrderPlacedProcessor.ProcessErrorAsync += ErrorHandler;
+            await _emailOrderPlacedProcessor.StartProcessingAsync();
         }
 
         /// <summary>
@@ -68,6 +82,9 @@ namespace Mango.Services.Email.Web.Api.Messaging
 
             await _registerUserProcessor.StopProcessingAsync();
             await _registerUserProcessor.DisposeAsync();
+
+            await _emailOrderPlacedProcessor.StopProcessingAsync();
+            await _emailOrderPlacedProcessor.DisposeAsync();
         }
 
         /// <summary>
@@ -112,6 +129,31 @@ namespace Mango.Services.Email.Web.Api.Messaging
             {
                 // Try to log email.
                 await _emailService.RegisterUserEmailAndLog(email);
+                await args.CompleteMessageAsync(args.Message);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Function to manage all the request in register new order from azure service bus.
+        /// </summary>
+        /// <param name="args">Process message event arguments.</param>
+        /// <returns>Task.</returns>
+        private async Task OnOrderPlacedRequestReceived(ProcessMessageEventArgs args)
+        {
+            // This code is executed after to receive a message for the selected queue.
+            var message = args.Message;
+            var body = Encoding.UTF8.GetString(message.Body);
+
+            // This is the content from the queue of Azure Service Bus.
+            var rewardsMessage = JsonConvert.DeserializeObject<RewardsMessage>(body);
+            try
+            {
+                // Try to log email for order placed.
+                await _emailService.LogOrderPlaced(rewardsMessage);
                 await args.CompleteMessageAsync(args.Message);
             }
             catch (Exception ex)

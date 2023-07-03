@@ -1,4 +1,5 @@
-﻿using Mango.Services.Email.Web.Api.Models.Dto;
+﻿using Mango.Services.Email.Web.Api.Message;
+using Mango.Services.Email.Web.Api.Models.Dto;
 
 namespace Mango.Services.Email.Web.Api.Services
 {
@@ -20,5 +21,12 @@ namespace Mango.Services.Email.Web.Api.Services
         /// <param name="email">New user email.</param>
         /// <returns>Async Task.</returns>
         Task RegisterUserEmailAndLog(string email);
+
+        /// <summary>
+        /// Function to log a reward message for "OrderCreatedEmail" in "OrderCreated" topic in Azure Service Bus.
+        /// </summary>
+        /// <param name="rewardsMessage">Reward message.</param>
+        /// <returns>Async Task.</returns>
+        Task LogOrderPlaced(RewardsMessage rewardsMessage);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Mango.Services.Email.Web.Api.Data;
+using Mango.Services.Email.Web.Api.Message;
 using Mango.Services.Email.Web.Api.Models;
 using Mango.Services.Email.Web.Api.Models.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -53,7 +54,17 @@ namespace Mango.Services.Email.Web.Api.Services
             string message = "User registration successful <bt /> Email: " + email;
             await LogAndEmail(message, "admin@contoso.com");
         }
-        
+
+        /// <summary>
+        /// Function to log a reward message for "OrderCreatedEmail" in "OrderCreated" topic in Azure Service Bus.
+        /// </summary>
+        /// <param name="rewardsMessage">Reward message.</param>
+        /// <returns>Async Task.</returns>
+        public async Task LogOrderPlaced(RewardsMessage rewardsMessage)
+        {
+            string message = "New Order Placed. <bt /> Order ID: " + rewardsMessage.OrderId;
+            await LogAndEmail(message, "admin@contoso.com");
+        }
 
         /// <summary>
         /// Function to save an email inside the database.

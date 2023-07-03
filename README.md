@@ -52,6 +52,13 @@ This project is the one who manage any call to ```Azure Service Bus``` for ```em
 You can test the use of this project starting everything but not this project, after that send some emails from the app and then, start
 your application with all the projects and see how ```Email API``` manage all the ```Queues``` from ```Azure Service Bus```.
 
+### Rewards API
+
+This project is the one who manage any call to ```Azure Service Bus``` for ```ordercreated``` topic with  ```OrderCreatedEmail``` and ```OrderCreatedRewardsUpdate``` ```subcriptions```.
+
+You can test the use of this project starting everything but not this project, after that send some emails from the app and then, start
+your application with all the projects and see how ```Rewards API``` manage all the ```Subcriptions``` from ```Azure Service Bus```.
+
 ## Additional knowledge
 
 ### Azure Service Bus
@@ -71,6 +78,15 @@ Any ```Azure Resource``` have a cost for this project, for that reason we use a 
 
 To get the ```Connection String``` from ```Azure Service Bus``` resource you have to go to ```Shared access policies```
 section and get the ```Primary Connection String``` from ```root``` Policy. Also you can create a new one.
+
+A ```Queue``` follow the structure of ```First in, First Out (FIFO)```. With ```Topics and Subcriptions``` is different, because you can send multiples messages that can be
+executed at the same time, a ```Topic``` don't need to execute one message and then the another.
+
+- ```Queue = One sender, one receiver ```
+- ```Topics = One sender, multiple receivers ```
+
+A ```Topic``` can have multiples ```subcriptions```. A ```subcription``` inside a ```Topic``` is like a sample ```Queue``` inside of the ```Topic```.
+
 
 ### Stripe - Payment integration
 
