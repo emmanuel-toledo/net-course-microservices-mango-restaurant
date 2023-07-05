@@ -42,7 +42,8 @@ namespace Mango.Web.App.Controllers
         [HttpPost]
         public async Task<IActionResult> ProductCreate(ProductDto model)
         {
-            if (ModelState.IsValid)
+			// This line can help us to validate the data annotation of a model.
+			if (ModelState.IsValid)
             {
                 ResponseDto? response = await _productService.CreateProductAsync(model);
 
@@ -79,17 +80,21 @@ namespace Mango.Web.App.Controllers
         [HttpPost]
         public async Task<IActionResult> ProductEdit(ProductDto model)
         {
-            ResponseDto? response = await _productService.UpdateProductAsync(model);
+            // This line can help us to validate the data annotation of a model.
+            if (ModelState.IsValid)
+            {
+				ResponseDto? response = await _productService.UpdateProductAsync(model);
 
-            if (response != null && response.IsSuccess)
-            {
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction(nameof(ProductIndex));
-            }
-            else
-            {
-                TempData["error"] = response?.Message;
-            }
+				if (response != null && response.IsSuccess)
+				{
+					TempData["success"] = "Product updated successfully";
+					return RedirectToAction(nameof(ProductIndex));
+				}
+				else
+				{
+					TempData["error"] = response?.Message;
+				}
+			}
             return View(model);
         }
 

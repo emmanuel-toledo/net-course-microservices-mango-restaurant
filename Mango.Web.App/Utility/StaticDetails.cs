@@ -84,5 +84,14 @@
         /// Cancelled status for payment.
         /// </summary>
         public const string Status_Cancelled = "Cancelled";
+
+        /// <summary>
+        /// Enumerable for content types.
+        /// </summary>
+        public enum ContentType
+        {
+            Json,
+            MultipartFormData
+        }
     }
 }

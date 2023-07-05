@@ -33,6 +33,16 @@
         /// <summary>
         /// Get and set the image url of a product.
         /// </summary>
-        public string ImageUrl { get; set; }
-    }
+        public string? ImageUrl { get; set; }
+
+		/// <summary>
+		/// Get and set the image local path of a product.
+		/// </summary>
+		public string? ImageLocalPath { get; set; }
+
+        /// <summary>
+        /// Get and set the image form file.
+        /// </summary>
+        public IFormFile? Image { get; set; }
+	}
 }

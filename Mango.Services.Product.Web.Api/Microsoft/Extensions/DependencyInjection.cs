@@ -121,5 +121,29 @@ namespace Mango.Services.Product.Web.Api.Microsoft.Extensions
                 });
             });
         }
-    }
+
+		/// <summary>
+		/// Main function to apply any pending migration and execute the application.
+		/// </summary>
+		/// <param name="app">Web application object.</param>
+		public static void RunApplication(this WebApplication app)
+		{
+			// Apply any pending migration to the database.
+			using (var scope = app.Services.CreateScope())
+			{
+				// Get "AppDbContext" service.
+				var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+				// Validate if are pending migrations in the database.
+				if (_db.Database.GetPendingMigrations().Count() > 0)
+				{
+					// Apply the pendings migrations in the database (it is like execute update-database command).
+					_db.Database.Migrate();
+				}
+			}
+            // Configure the use of static files as images in "wwwroot" folder.
+            app.UseStaticFiles();
+			// Execute application.
+			app.Run();
+		}
+	}
 }

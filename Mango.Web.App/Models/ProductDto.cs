@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Mango.Web.App.Utility;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mango.Web.App.Models
 {
@@ -32,15 +33,27 @@ namespace Mango.Web.App.Models
         /// </summary>
         public string CategoryName { get; set; }
 
-        /// <summary>
-        /// Get and set the image url of a product.
-        /// </summary>
-        public string ImageUrl { get; set; }
+		/// <summary>
+		/// Get and set the image url of a product.
+		/// </summary>
+		public string? ImageUrl { get; set; }
+
+		/// <summary>
+		/// Get and set the image local path of a product.
+		/// </summary>
+		public string? ImageLocalPath { get; set; }
 
         /// <summary>
-        /// Get and set the count of a product.
+        /// Get and set the image form file.
         /// </summary>
-        [Range(1, 100)]
+        [MaxFileSizeAttribute(1)]
+        [AllowedExtensions(new string[] { ".jpg", ".png" })]
+		public IFormFile? Image { get; set; }
+
+		/// <summary>
+		/// Get and set the count of a product.
+		/// </summary>
+		[Range(1, 100)]
         public int Count { get; set; } = 1;
     }
 }

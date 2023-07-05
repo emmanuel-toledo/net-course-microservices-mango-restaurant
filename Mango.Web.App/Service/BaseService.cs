@@ -35,7 +35,16 @@ namespace Mango.Web.App.Service
                 // Initialize a new "HttpClient".
                 HttpClient client = _httpClientFactory.CreateClient("MangoAPI");
                 HttpRequestMessage message = new();
-                message.Headers.Add("Accept", "application/json");
+
+                if(requestDto.ContentType == ContentType.MultipartFormData)
+                {
+                    // Accept any media type and subtype for the request.
+					message.Headers.Add("Accept", "*/*");
+				}
+                else
+                {
+					message.Headers.Add("Accept", "application/json");
+				}
 
                 // Set access Token if request needs.
                 if (withBearer)
@@ -46,10 +55,44 @@ namespace Mango.Web.App.Service
 
                 // Configure the request details.
                 message.RequestUri = new Uri(requestDto.Url);
-                if (requestDto.Data != null)
+
+                // Check if the request need multipar form data (a file).
+                if(requestDto.ContentType == ContentType.MultipartFormData)
                 {
-                    message.Content = new StringContent(JsonConvert.SerializeObject(requestDto.Data), Encoding.UTF8, "application/json");
+                    // Loop inside all the properties of "requestDto" variable.
+                    var content = new MultipartFormDataContent();
+                    foreach(var prop in requestDto.Data.GetType().GetProperties())
+                    {
+                        // Get the value of the current property in the loop.
+                        var value = prop.GetValue(requestDto.Data);
+                        // Check if the property's value is of type FormFile (or IFormFile).
+                        if (value is FormFile)
+                        {
+                            // Convert the value in a FormFile.
+                            var file = (FormFile)value;
+                            // If the file is not null.
+                            if (file != null)
+                            {
+                                // Add the file value in the content.
+                                content.Add(new StreamContent(file.OpenReadStream()), prop.Name, file.FileName);
+                            }
+                        }
+                        else
+                        {
+                            // If the property is not FormFile type we add a new string value to the content.
+                            content.Add(new StringContent(value == null ? "" : value.ToString()), prop.Name);
+						}
+                    }
+                    message.Content = content;
                 }
+                else
+                {
+                    // If the request does not need multipar form data we send a new application/json request.
+					if (requestDto.Data != null)
+					{
+						message.Content = new StringContent(JsonConvert.SerializeObject(requestDto.Data), Encoding.UTF8, "application/json");
+					}
+				}
 
                 switch (requestDto.ApiType)
                 {

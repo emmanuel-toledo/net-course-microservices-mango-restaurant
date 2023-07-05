@@ -1,9 +1,12 @@
 ﻿@model ProductDto
 
-<form asp-action="ProductCreate">
+<!--
+    We need to use enctype="multipart/form-data" to say that we need to store an image.
+-->
+<form asp-action="ProductCreate" enctype="multipart/form-data">
     <br />
     <div class="container border p-3">
-        <h1 class="text-white text-center">Create Product</h1>
+        <h1 class="text-primary text-center">Create Product</h1>
         <hr />
         <div class="row">
             <div class="col-2">
@@ -28,18 +31,19 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;">ImageUrl</label>
-            </div>
-            <div class="col-10 pb-3">
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="col-2">
                 <label class="control-label pt-2" style="font-size:20px;">Price</label>
             </div>
             <div class="col-10 pb-3">
                 <input asp-for="Price" class="form-control" type="number" />
                 <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Image</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <input asp-for="ImageUrl" hidden class="form-control" />
             </div>
             <div class="col-5 offset-2">
                 <a class="btn-primary btn form-control" asp-controller="Product" asp-action="ProductIndex">Back to List</a>
