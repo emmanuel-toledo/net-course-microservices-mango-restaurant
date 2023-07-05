@@ -28,6 +28,8 @@ The main project (```web application```) does not need to specify a unique port.
 This project is the frontend of the application, contains different libraries like ```Datatables```, ```Bootstrap```, etc.
 - https://datatables.net/
 
+Inside the project we will see an example of ```Custom data annotations``` for ```ProductDto``` class.
+
 ### Auth API
 This project was modified to use ```7002``` port for the ```https``` profile in the ```launchSettings.json``` file.
 
@@ -64,6 +66,12 @@ This project is the one who manage any call to ```Azure Service Bus``` for ```or
 You can test the use of this project starting everything but not this project, after that send some emails from the app and then, start
 your application with all the projects and see how ```Rewards API``` manage all the ```Subcriptions``` from ```Azure Service Bus```.
 
+### Gateway
+
+To create a ```Gateway``` project we selected the ```ASP.NET Core Empty``` project because we will create all the architecture from 0.
+
+This project was modified to use ```7777``` port for the ```https``` profile in the ```launchSettings.json``` file.
+
 ## Additional knowledge
 
 ### Azure Service Bus
@@ -88,7 +96,7 @@ A ```Queue``` follow the structure of ```First in, First Out (FIFO)```. With ```
 executed at the same time, a ```Topic``` don't need to execute one message and then the another.
 
 - ```Queue = One sender, one receiver ```
-- ```Topics = One sender, multiple receivers ```
+- ```Top``````ics = One sender, multiple receivers ```
 
 A ```Topic``` can have multiples ```subcriptions```. A ```subcription``` inside a ```Topic``` is like a sample ```Queue``` inside of the ```Topic```.
 
@@ -109,6 +117,19 @@ To know more about the topic you can see the following doc (https://stripe.com/d
 
 We also can know what is the current status of a payment intent, follow the link and see more about it (https://stripe.com/docs/api/errors#errors-payment_intent-status)
 
+### Architecture - Use of Gateway
 
+We can have our ```Web App``` project connected to all our ```microservices```. But this is not the best approach. Currentyl we only have one application, the ```Web App```, but
+imagine that we need to add a new client, in this case a ```mobile app```, you will have to modify all the ```microservice``` to accept the requests from the ```web app and mobile app```.
 
+In this example we should add a ```Gateway```, this is a new ```layer``` in our architecture and programming, because a ```gateway``` works as a ```unified point of entry```, where all our request
+will be send to the ```gateway```, and this one will connect and redirect each request to the requiered ```microservice```.
 
+In this case we will use an ```Open Source Gateway``` called ```OCELOT```, of course, we can also use the ```microsoft azure gateway```, but in this case we will use ```OCELOT```.
+
+Some of the ventages that we have when use a ```Gateway``` are:
+- Single point of entry to set of services.
+- Easier security management.
+- Suppot to larger application.
+
+The only service that will not be managed by the ```Gateway``` in this project will be the ```Auth API```, this one will be isolated to the rest. The ```Gateway``` will receive the ```Bearer Token``` from the ```Authentication```.
