@@ -28,5 +28,27 @@ namespace Mango.Web.App.Service.IService
         /// <param name="orderHeaderId">Order header id</param>
         /// <returns>Response model.</returns>
         Task<ResponseDto?> ValidateStripeSession(int orderHeaderId);
+
+        /// <summary>
+        /// Function to retrive a list of all the orders in the database.
+        /// </summary>
+        /// <param name="userId">User's unique identifier.</param>
+        /// <returns>Response model.</returns>
+        Task<ResponseDto?> GetAllOrders(string? userId);
+
+        /// <summary>
+        /// Function to retrive an order by unique identifier.
+        /// </summary>
+        /// <param name="orderId">Order's unique identifier.</param>
+        /// <returns>Response model.</returns>
+        Task<ResponseDto?> GetOrder(int orderId);
+
+        /// <summary>
+        /// Function to update an order's status.
+        /// </summary>
+        /// <param name="orderId">Order's unique identifier.</param>
+        /// <param name="newStatus">New status.</param>
+        /// <returns>Response model.</returns>
+        Task<ResponseDto?> UpdateOrderStatus(int orderId, string newStatus);
     }
 }

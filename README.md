@@ -23,6 +23,11 @@ To manage in a better way our project, each microservice has a different port th
 
 The main project (```web application```) does not need to specify a unique port.
 
+### Mango Web
+
+This project is the frontend of the application, contains different libraries like ```Datatables```, ```Bootstrap```, etc.
+- https://datatables.net/
+
 ### Auth API
 This project was modified to use ```7002``` port for the ```https``` profile in the ```launchSettings.json``` file.
 

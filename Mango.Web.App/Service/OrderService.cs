@@ -61,5 +61,49 @@ namespace Mango.Web.App.Service
                 Data = orderHeaderId
             });
         }
+
+        /// <summary>
+        /// Function to retrive a list of all the orders in the database.
+        /// </summary>
+        /// <param name="userId">User's unique identifier.</param>
+        /// <returns>Response model.</returns>
+        public async Task<ResponseDto?> GetAllOrders(string? userId)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.OrderAPIBase + "/api/order/GetOrders/" + userId
+            });
+        }
+
+        /// <summary>
+        /// Function to retrive an order by unique identifier.
+        /// </summary>
+        /// <param name="orderId">Order's unique identifier.</param>
+        /// <returns>Response model.</returns>
+        public async Task<ResponseDto?> GetOrder(int orderId)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.OrderAPIBase + "/api/order/GetOrder/" + orderId
+            });
+        }
+
+        /// <summary>
+        /// Function to update an order's status.
+        /// </summary>
+        /// <param name="orderId">Order's unique identifier.</param>
+        /// <param name="newStatus">New status.</param>
+        /// <returns>Response model.</returns>
+        public async Task<ResponseDto?> UpdateOrderStatus(int orderId, string newStatus)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Url = SD.OrderAPIBase + "/api/order/UpdateOrderStatus/" + orderId,
+                Data = newStatus
+            });
+        }
     }
 }
