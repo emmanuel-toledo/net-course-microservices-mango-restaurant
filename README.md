@@ -133,3 +133,39 @@ Some of the ventages that we have when use a ```Gateway``` are:
 - Suppot to larger application.
 
 The only service that will not be managed by the ```Gateway``` in this project will be the ```Auth API```, this one will be isolated to the rest. The ```Gateway``` will receive the ```Bearer Token``` from the ```Authentication```.
+
+OCELOT documentation in https://ocelot.readthedocs.io/en/latest/introduction/gettingstarted.html
+
+Example of OCELOT configuration.
+
+```
+"Routes": [
+    // The request is taken from the upstream and redirected to the downstream.
+    // This configuration is for all the services.
+    {
+      "DownstreamPathTemplate": "/api/product", // microservice endpoint
+      "DownstreamScheme": "https", // connection protocol.
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", // domain or host of microservice.
+          "Port": 7000 // port of the microservice
+        }
+      ],
+      "UpstreamPathTemplate": "/api/product", // path of the service in OCELOT, make sure that the request in you app will be correct.
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ] // protocol type for the service.
+    }
+  ],
+  // Global configuration for OCELOT.
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7777" // URL in our architecture.
+  }
+```
+
+You need to be carefully about what url you are trying to reach out, let's see an exmaple. 
+
+If you define a request in your ```Web App``` for ```ProductAPI``` and the url is like ```https://localhost:7777/api/product/```, but you defined in your ```OCELOT Routes```  the following route value
+```"UpstreamPathTemplate": "/api/product"```, the request will return a ```not found``` error.
+
+To solve it, you need to match the request url in your ```web app``` and the ```OCELOT .json configuration```.
+
+An additional step is to validate the authentication if you are using ```Bearer``` token like in this project. Make sure that the ```Issuer```, ```Secret``` and ```Client``` are the same.
