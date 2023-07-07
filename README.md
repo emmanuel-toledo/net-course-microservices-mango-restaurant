@@ -216,10 +216,15 @@ Once that you have created all the databases, you need to configure the access t
 To publish all your api projects, you will need do the following.
 
 a. Login with your free azure account in your visual studio.
+ 
 b. Right click in your api project for example ```Mango.Services.Auth.Web.Api``` and clic on ```publish```.
+ 
 c. Click on add a new profile to publish and select ```Azure``` option.
+ 
 d. Select ```Azure App Service (Windows)``` option.
+ 
 e. After that make sure that you select your free azure account in the top and right of the window.
+ 
 f. Click on create new app service (or use one if you created that before)
    
    - Set the name of ```MangoServicesAuthWebApi```.
@@ -235,13 +240,17 @@ g. In the ```Hosting Plan``` window.
    - Click ```OK``` button.
    
 h. Click on ```Create``` button.
+ 
 i. Click on ```Next``` button.
+ 
 j. Click on ```Skip this step``` because we don't need any ```API manager``` for now.
+ 
 k. Click on ```Finish``` button.
 
 Once it finished, in the main page of ```Publish```, set the following configuration.
 
 a) In the ```Deployment Mode``` choose the ```Self-contained``` (```Independiente``` in spanish) mode.
+ 
 b) Click on ```Publish``` button.
 
 After that, you need to configure an environment variable in the created ```App Service```, go to it in Azure, then in the left menu select 
