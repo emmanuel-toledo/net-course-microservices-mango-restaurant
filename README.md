@@ -215,37 +215,37 @@ Once that you have created all the databases, you need to configure the access t
 
 To publish all your api projects, you will need do the following.
 
-a. Login with your free azure account in your visual studio.
+a) Login with your free azure account in your visual studio.
  
-b. Right click in your api project for example ```Mango.Services.Auth.Web.Api``` and clic on ```publish```.
+b) Right click in your api project for example ```Mango.Services.Auth.Web.Api``` and clic on ```publish```.
  
-c. Click on add a new profile to publish and select ```Azure``` option.
+c) Click on add a new profile to publish and select ```Azure``` option.
  
-d. Select ```Azure App Service (Windows)``` option.
+d) Select ```Azure App Service (Windows)``` option.
  
-e. After that make sure that you select your free azure account in the top and right of the window.
+e) After that make sure that you select your free azure account in the top and right of the window.
  
-f. Click on create new app service (or use one if you created that before)
+f) Click on create new app service (or use one if you created that before)
    
    - Set the name of ```MangoServicesAuthWebApi```.
    - Choose the free subscription.
    - Select the resource group that we create before (```mango-web-net-8```) or create new one.
    - Create a new ```Hosting Plan```.
    
-g. In the ```Hosting Plan``` window.
+g) In the ```Hosting Plan``` window.
  
    - Set the name of ```MangoServicesAuthWebApiPlan```.
    - Location set the default value.
    - Size set the ```Free``` option (or another if you want to pay).
    - Click ```OK``` button.
    
-h. Click on ```Create``` button.
+h) Click on ```Create``` button.
  
-i. Click on ```Next``` button.
+i) Click on ```Next``` button.
  
-j. Click on ```Skip this step``` because we don't need any ```API manager``` for now.
+j) Click on ```Skip this step``` because we don't need any ```API manager``` for now.
  
-k. Click on ```Finish``` button.
+k) Click on ```Finish``` button.
 
 Once it finished, in the main page of ```Publish```, set the following configuration.
 
@@ -317,6 +317,4 @@ is present in the ```App service``` you just created. For .NET 8 preview I did't
 - https://learn.microsoft.com/en-us/answers/questions/1303909/when-will-net-8-be-available-on-azure-app-services
 
 To simulate the production environment you can to go to ```lauchSettings.json``` file, and inside the ```https``` profile, modifiy the environment from ```Development``` to ```Production```.
-
-
 
