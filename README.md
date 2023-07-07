@@ -180,30 +180,31 @@ a)  Make sure that you have already created and configured in your project the u
   a in Azure for this project, this can be named like ```mango-web-net-8```.
 
 b) Create each database for your ```web apis```, go to azure portal and create ```SQL databases```, you can use the same name that you define in your ```appsettings.json``` files for each api.
-    - NET8_Mango_Auth
-    - NET8_Mango_Coupon
-    - NET8_Mango_Email
-    - NET8_Mango_Order
-    - NET8_Mango_Product
-    - NET8_Mango_Reward
-    - NET8_Mango_ShoppingCart
+
+   - NET8_Mango_Auth
+   - NET8_Mango_Coupon
+   - NET8_Mango_Email
+   - NET8_Mango_Order
+   - NET8_Mango_Product
+   - NET8_Mango_Reward
+   - NET8_Mango_ShoppingCart
+
+   Make sure that, when you create your databases, create or use an existent Server to have them. You could use the name of ```net8mangomicroservices``` for the server.
+   Also, select the authentication method of SQL Authentication, for the user and password you could use something las the following:
+
+   - User: sqladmin
+   - Password: MangoDbAdmin1234!
+
+   Once you create the server, make sure to configure each of this properties in yours db as you see here.
+
+   For ```Workload environment``` select ```Development``` (or Production if you want but it is more expensive). For the pricing (```Compute + storage```), 
+   you can select ```Basic (for less demanding workloads)```. The estimated cost is about ```4.90 USD```.
+
+   - Connectivity method = public
+   - Allow Azure services and resources to access this server = yes
+   - Add current client IP address = yes
    
-    Make sure that, when you create your databases, create or use an existent Server to have them. You could use the name of ```net8mangomicroservices``` for the server.
-    Also, select the authentication method of SQL Authentication, for the user and password you could use something las the following:
-    
-    - User: sqladmin
-    - Password: MangoDbAdmin1234!
-
-    Once you create the server, make sure to configure each of this properties in yours db as you see here.
-    
-    For ```Workload environment``` select ```Development``` (or Production if you want but it is more expensive). For the pricing (```Compute + storage```), 
-    you can select ```Basic (for less demanding workloads)```. The estimated cost is about ```4.90 USD```.
-
-    - Connectivity method = public
-    - Allow Azure services and resources to access this server = yes
-    - Add current client IP address = yes
-     
-    Once that you have all this configuration you can create the SQL Server for your databases.
+   Once that you have all this configuration you can create the SQL Server for your databases.
 
 c) For all the database make sure to select the same SQL Server of step ```b)```. Please, make sure that for the pricing (```Compute + storage```) in the databases, 
    you select ```Basic (for less demanding workloads)```. The estimated cost is about ```4.90 USD```.
