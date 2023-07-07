@@ -84,7 +84,7 @@ Usually this resource store a request for ```14 days```, but this value can be m
 In the solution we have an integration folder where we have a project with name ```Mango.Integration.MessageBus```. This project can help 
 us to connect to an azure resource named ```Service Bus```.
 
-We create this resource with a ```free azure account``` and the ```Service Bus``` is ```Standar``` type. Remember that 
+We create this resource with a ```free azure account``` and the ```Service Bus``` is with ```pricing tier``` of ```Standar``` type. Remember that 
 a ```Queue``` and ```Topic``` in this kind of resource must be unique.
 
 Any ```Azure Resource``` have a cost for this project, for that reason we use a ```free azure account```.
@@ -176,12 +176,10 @@ To deploy the project in azure you need to do different steps.
 
 a)  Make sure that you have already created and configured in your project the use of ```Azure Service Bus``` with ```Queues``` and ```Topics```, only if you want to use them, if not, make sure
     that you will need to change the current project code to don't connect to ```Azure Service Bus``` and you won't need the ```Integration``` project. Also, you will need to modify the ```web api```
-    projects where you manage all the calls to ```Azure Service Bus``` for ```Queues``` and ```Topics```.
-    
-    If you use ```Azure Service Bus```, make sure that you have configured a ```Resource group``` in Azure for this project, this can be named like ```mango-web-net-8```.
+    projects where you manage all the calls to ```Azure Service Bus``` for ```Queues``` and ```Topics```. If you use ```Azure Service Bus```, make sure that you have configured a ```Resource group``` 
+  a in Azure for this project, this can be named like ```mango-web-net-8```.
 
 b) Create each database for your ```web apis```, go to azure portal and create ```SQL databases```, you can use the same name that you define in your ```appsettings.json``` files for each api.
- 
     - NET8_Mango_Auth
     - NET8_Mango_Coupon
     - NET8_Mango_Email
