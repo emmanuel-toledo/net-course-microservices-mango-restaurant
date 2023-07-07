@@ -96,7 +96,7 @@ A ```Queue``` follow the structure of ```First in, First Out (FIFO)```. With ```
 executed at the same time, a ```Topic``` don't need to execute one message and then the another.
 
 - ```Queue = One sender, one receiver ```
-- ```Top``````ics = One sender, multiple receivers ```
+- ```Topics = One sender, multiple receivers ```
 
 A ```Topic``` can have multiples ```subcriptions```. A ```subcription``` inside a ```Topic``` is like a sample ```Queue``` inside of the ```Topic```.
 
