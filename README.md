@@ -169,3 +169,142 @@ If you define a request in your ```Web App``` for ```ProductAPI``` and the url i
 To solve it, you need to match the request url in your ```web app``` and the ```OCELOT .json configuration```.
 
 An additional step is to validate the authentication if you are using ```Bearer``` token like in this project. Make sure that the ```Issuer```, ```Secret``` and ```Client``` are the same.
+
+### Azure Deploy
+
+To deploy the project in azure you need to do different steps.
+
+a)  Make sure that you have already created and configured in your project the use of ```Azure Service Bus``` with ```Queues``` and ```Topics```, only if you want to use them, if not, make sure
+    that you will need to change the current project code to don't connect to ```Azure Service Bus``` and you won't need the ```Integration``` project. Also, you will need to modify the ```web api```
+    projects where you manage all the calls to ```Azure Service Bus``` for ```Queues``` and ```Topics```.
+    
+    If you use ```Azure Service Bus```, make sure that you have configured a ```Resource group``` in Azure for this project, this can be named like ```mango-web-net-8```.
+
+b) Create each database for your ```web apis```, go to azure portal and create ```SQL databases```, you can use the same name that you define in your ```appsettings.json``` files for each api.
+ 
+    - NET8_Mango_Auth
+    - NET8_Mango_Coupon
+    - NET8_Mango_Email
+    - NET8_Mango_Order
+    - NET8_Mango_Product
+    - NET8_Mango_Reward
+    - NET8_Mango_ShoppingCart
+   
+    Make sure that, when you create your databases, create or use an existent Server to have them. You could use the name of ```net8mangomicroservices``` for the server.
+    Also, select the authentication method of SQL Authentication, for the user and password you could use something las the following:
+    
+    - User: sqladmin
+    - Password: MangoDbAdmin1234!
+
+    Once you create the server, make sure to configure each of this properties in yours db as you see here.
+    
+    For ```Workload environment``` select ```Development``` (or Production if you want but it is more expensive). For the pricing (```Compute + storage```), 
+    you can select ```Basic (for less demanding workloads)```. The estimated cost is about ```4.90 USD```.
+
+    - Connectivity method = public
+    - Allow Azure services and resources to access this server = yes
+    - Add current client IP address = yes
+     
+    Once that you have all this configuration you can create the SQL Server for your databases.
+
+c) For all the database make sure to select the same SQL Server of step ```b)```. Please, make sure that for the pricing (```Compute + storage```) in the databases, 
+   you select ```Basic (for less demanding workloads)```. The estimated cost is about ```4.90 USD```.
+   
+   Also, in the networking tab make sure to add your current api address.
+
+Once that you have created all the databases, you need to configure the access to each one of them in our project, as we do for our local databases, for that you will use the ```appsettings.Production.json``` file.
+
+To publish all your api projects, you will need do the following.
+
+a) Login with your free azure account in your visual studio.
+b) Right click in your api project for example ```Mango.Services.Auth.Web.Api``` and clic on ```publish```.
+c) Click on add a new profile to publish and select ```Azure``` option.
+d) Select ```Azure App Service (Windows)``` option.
+e) After that make sure that you select your free azure account in the top and right of the window.
+f) Click on create new app service (or use one if you created that before)
+   - Set the name of ```MangoServicesAuthWebApi```.
+   - Choose the free subscription.
+   - Select the resource group that we create before (```mango-web-net-8```) or create new one.
+   - Create a new ```Hosting Plan```.
+g) In the ```Hosting Plan``` window.
+   - Set the name of ```MangoServicesAuthWebApiPlan```.
+   - Location set the default value.
+   - Size set the ```Free``` option (or another if you want to pay).
+   - Click ```OK``` button.
+h) Click on ```Create``` button.
+i) Click on ```Next``` button.
+j) Click on ```Skip this step``` because we don't need any ```API manager``` for now.
+k) Click on ```Finish``` button.
+
+Once it finished, in the main page of ```Publish```, set the following configuration.
+
+a) In the ```Deployment Mode``` choose the ```Self-contained``` (```Independiente``` in spanish) mode.
+b) Click on ```Publish``` button.
+
+After that, you need to configure an environment variable in the created ```App Service```, go to it in Azure, then in the left menu select 
+```Configuration``` option, in ```Application settings``` select ```New application setting```. Then set the following name and value.
+- Name = ASPNETCORE_ENVIRONMENT
+- Value = Production
+ 
+Then save the ```App Service``` and you will see how it works successfully connected to production configuration (using ```appsettings.Production.json``` file configuration).
+If you don't see that is running successfully, then go ```Overview``` page and click on ```Restart```.
+
+To configure the ```Azure Service Bus``` for our ```Reward API``` and ```Email API```, you will need to change the service plan from free to another one.
+Follow the following steps.
+- Inside the ```App Service```, on left menu, go to ```Scale up (App Service Plan) -> Select Basic B1``` and save.
+- Inside the ```App Service```, on left menu, go to ```Configuration -> General Settings```, in ```Always on``` set value of ```on```.
+
+If you don't do this configuration, the web apis wont be able to detect when a new request is inside the ```Azure Service Bus``` as ```Queue``` or ```Topic``` because they only will be
+activaded when a user access to it.
+
+The next step is to modify the url's for each microservice in ```appsettings.Production.json``` files. Replace each https://localhost for the new url that you have by each ```Azure App Service```. 
+Make sure that you publish all the project after this update.
+
+Now it is time to publish our ```Web App``` project, and for that you will need to do the same that we saw before, create a new file named ```appsettings.Production.json``` and set all the required configuration
+and set the microservices url from the ```Azure App Service```.
+
+You can test the application until here.
+
+Then, you will need to publish the ```Gateway App```, for that, as we do for ```Web App```, following the same steps, and once it finished, remember to update in the 
+```appsettings.Production.json``` file each url that is not the ```OCELOT Gateway``` url in both ```Microservices``` and ```Web App``` projects.
+
+After that, create a file named ```ocelot.Production.json``` to store the configuration of OCELOT, that in this case the only thing that you will need to change is the 
+```BaseUrl``` for the url that you have in the ```App Service``` in Azure for the ```Gateway``` project. Also, in the ```DownstreamHostAndPorts``` remove the ```Port``` property
+and set in ```Host``` the domain of each ```Microservice```, then publish the project.
+
+Example: 
+
+```
+"Routes": [
+    {
+      "DownstreamPathTemplate": "/api/product",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mangoservicescouponwebapi.azurewebsites.net",
+        }
+      ],
+      "UpstreamPathTemplate": "/api/product",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://mangoservicesgateway.azurewebsites.net"
+  }
+```
+
+Remember to consider the following once that the project is published.
+- Make sure that you have the coupons created in ```Stripe``` when you test the production app.
+- Check if the ```Azure Service Bus``` is working as expected saving the data in production databases, this for ```Email API``` and ```Reward API```.
+
+### Azure Deploy Error
+
+If you publish and don't see the app is running and show an error ```500:30```, make sure that the .NET version in the project
+is present in the ```App service``` you just created. For .NET 8 preview I did't find a solution because it is as a preview version, hopefully you will see it enable in the section 
+```Configuration -> General Settings -> .NET Version``` inside the ```App Service``` in ```Azure```.
+- https://learn.microsoft.com/en-us/answers/questions/1303909/when-will-net-8-be-available-on-azure-app-services
+
+To simulate the production environment you can to go to ```lauchSettings.json``` file, and inside the ```https``` profile, modifiy the environment from ```Development``` to ```Production```.
+
+
+
